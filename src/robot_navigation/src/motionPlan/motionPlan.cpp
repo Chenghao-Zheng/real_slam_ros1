@@ -14,6 +14,8 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2/LinearMath/Matrix3x3.h>
 
+#include <tf/transform_listener.h>
+
 // 如果没有私有节点，launch文件中的参数加载不进来，目前还不知道为什么，但是一定要像这样使用
 motionPlan::motionPlan(/* args */) : private_node("~")
 {
@@ -800,6 +802,9 @@ void motionPlan::pathPlanning(Eigen::Vector2d startMapPoint, Eigen::Vector2d goa
   //   cout<<"Not have local map!"<<endl;
   //   return;
   // }
+
+
+
   if(has_arrived_end){
     cout<<"Arrived the end!"<<endl;
     return;
@@ -813,6 +818,21 @@ void motionPlan::pathPlanning(Eigen::Vector2d startMapPoint, Eigen::Vector2d goa
     {
       if(getEndFlag == true)  //需要重新规划的时候
       {
+        static tf::TransformListener listener;
+        tf::StampedTransform transform;
+        try {
+            // 注意：这里 frame_id_name 必须是 "map"！
+            if (listener.waitForTransform("map", "base_footprint", ros::Time(0), ros::Duration(1.0))) {
+                listener.lookupTransform("map", "base_footprint", ros::Time(0), transform);
+                startPoint[0] = transform.getOrigin().x();
+                startPoint[1] = transform.getOrigin().y();
+                startMapPoint = startPoint; // 更新传入参数
+                ROS_INFO("【重新规划】当前起点: (%.2f, %.2f)", startPoint[0], startPoint[1]);
+            }
+        } catch (tf::TransformException &ex) {
+            ROS_ERROR("获取起点失败: %s", ex.what());
+            return; // 没获取到位置就别规划了y
+        }
 
 
         cout<<"Start is: "<<startMapPoint[0]<<" "<<startMapPoint[1]<<endl;

@@ -18,7 +18,7 @@
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_model" output="screen"
       args="-urdf -param robot_description -model tri_steer
               -J joint11 0.0 -J joint21 0.0 -J joint31 0.0
-              -x 2.0 -y 2.0 -z -0.0"/>
+              -x 0.5 -y 2.0 -z -0.0"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
       <arg name="paused" value="false"/>

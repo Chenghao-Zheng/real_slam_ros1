@@ -22,10 +22,6 @@ gnome-terminal -t "carto_relocalize" -- bash -lc "cd /home/ubuntu/Cartographer/C
 until rostopic list 2>/dev/null | grep -q "^/map$"; do
   sleep 0.5
 done
-
-# 3) 启动 teleop + robot
-gnome-terminal -t "teleop_start" -- bash -lc "source ~/RealSlamRos1/devel/setup.bash; roslaunch tri_steer_keyboard keyboard_tri_steer.launch"
-
 # 5）启动地图节点
 gnome-terminal -t "map start" -- bash -lc "source ~/RealSlamRos1/devel/setup.bash; roslaunch robot_costmap map_deal.launch;exec bash"
 # 6) 运动规划节点
