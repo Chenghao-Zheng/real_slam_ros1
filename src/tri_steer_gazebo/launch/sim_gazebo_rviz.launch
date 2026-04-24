@@ -18,7 +18,7 @@
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_model" output="screen"
       args="-urdf -param robot_description -model tri_steer
               -J joint11 0.0 -J joint21 0.0 -J joint31 0.0
-              -x 0.5 -y 2.0 -z -0.0"/>
+              -x 0.3 -y 0.0 -z -0.0"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
       <arg name="paused" value="false"/>
@@ -41,7 +41,7 @@
       launch-prefix="bash -lc 'sleep 2; exec $0 $@'"/>
   
   <!-- 加载地图描述 -->
-  <node pkg="map_server" type="map_server" name="map_server" args="$(find tri_steer_gazebo)/map/carto_mape.yaml"/>
+  <node pkg="map_server" type="map_server" name="map_server" args="$(find tri_steer_gazebo)/map/carto_mapf.yaml"/>
  
   <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="link_broadcaster" args="0 0 0 0 0 0 map odom" /> -->
 

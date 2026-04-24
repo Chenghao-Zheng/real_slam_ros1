@@ -606,7 +606,7 @@
     <ray>
       <scan>
         <horizontal>
-          <samples>1440</samples>
+          <samples>720</samples>
           <resolution>1</resolution>
           <min_angle>-3.14</min_angle>  <!-- -90deg -->
           <max_angle> 3.14</max_angle>  <!-- +90deg -->
@@ -792,7 +792,7 @@
       <publishWheelTF>false</publishWheelTF>
       <publishTf>1</publishTf>
       <publishWheelJointState>false</publishWheelJointState>
-      <updateRate>10.0</updateRate>
+      <updateRate>100.0</updateRate>
 
       <!-- 里程计话题 -->
       <odometryTopic>odom</odometryTopic>

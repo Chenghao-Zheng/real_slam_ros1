@@ -174,7 +174,7 @@ private:
 
   void simOdomCb(const robot_communication::localizationInfoBroadcastConstPtr& msg)
   {
-    // 仿真模式下，直接获取位置（不能删）
+    // 仿真模式下，直接获取位置
     x_ = msg->xPosition;
     y_ = msg->yPosition;
     yaw_ = msg->chassisAngle;
@@ -391,13 +391,11 @@ private:
   nav_msgs::Path path_;
   geometry_msgs::PoseStamped goal_;
 
-  // ==========================
-  // 【修复点】：放在类的 private 成员里
-  // ==========================
+
   tf::TransformListener tf_listener_;
   double last_path_first_x_{0.0};
   double last_path_first_y_{0.0};
-  // ==========================
+
 
   bool is_sim_{true};
   bool has_path_{false};

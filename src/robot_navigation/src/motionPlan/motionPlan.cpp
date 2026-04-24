@@ -803,8 +803,6 @@ void motionPlan::pathPlanning(Eigen::Vector2d startMapPoint, Eigen::Vector2d goa
   //   return;
   // }
 
-
-
   if(has_arrived_end){
     cout<<"Arrived the end!"<<endl;
     return;
